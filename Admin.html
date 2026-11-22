@@ -4,367 +4,488 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chatlyfriend | Admin Dashboard</title>
+<title>Chatlyfriend Administrator Control Centre</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
-    padding: 25px;
     font-family: Arial, sans-serif;
-    background: #f8f4f7;
-    color: #35283a;
-}
-
-.container {
-    max-width: 950px;
-    margin: auto;
+    background: #f6f3fa;
+    color: #30243d;
 }
 
 header {
-    background: #56365f;
+    background: linear-gradient(135deg,#42265f,#8964a9);
     color: white;
-    padding: 28px;
-    border-radius: 18px;
-    margin-bottom: 25px;
+    padding: 30px;
 }
 
-header h1 {
-    margin: 0 0 8px;
+header h1 { margin: 0; }
+header p { opacity: .85; }
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 25px;
 }
 
-.panel {
+.section {
     background: white;
     padding: 22px;
-    border-radius: 16px;
+    border-radius: 15px;
     margin-bottom: 22px;
-    box-shadow: 0 4px 18px rgba(0,0,0,.05);
+    box-shadow: 0 4px 18px #39204b0b;
 }
 
-input, select, button {
-    padding: 12px;
-    border-radius: 9px;
-    border: 1px solid #ddd;
-    margin: 5px 0;
-    font-size: 15px;
+h2 {
+    color: #65418b;
+    margin-top: 0;
+}
+
+.overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.metric {
+    background: white;
+    padding: 22px;
+    border-radius: 13px;
+    box-shadow: 0 3px 12px #39204b0b;
+}
+
+.metric span {
+    color: #777;
+    font-size: 14px;
+}
+
+.metric h3 {
+    font-size: 30px;
+    color: #704a96;
+    margin: 10px 0 0;
 }
 
 input, select {
     width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ded5e8;
+    border-radius: 8px;
+    background: white;
 }
 
 button {
-    background: #70477b;
-    color: white;
+    padding: 12px 17px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    margin: 5px 3px 5px 0;
 }
 
-button:hover {
-    background: #56365f;
-}
+.primary { background: #704a96; color: white; }
+.secondary { background: #eee7f5; color: #593878; }
+.green { background: #e4f5e9; color: #267447; }
+.red { background: #ffe8e8; color: #a52d2d; }
 
-.listener {
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 12px;
+.item {
+    padding: 16px;
+    border: 1px solid #eee8f3;
+    border-radius: 11px;
     margin-top: 12px;
 }
 
-.status {
-    color: #27834c;
-    font-weight: bold;
+.tag {
+    display: inline-block;
+    background: #eee7f5;
+    color: #634487;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
 }
 
-.unavailable {
-    color: #b64c4c;
+.small { color: #888; font-size: 13px; }
+
+.allocation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+    gap: 12px;
 }
 
-.small-button {
-    font-size: 13px;
-    padding: 9px;
-    margin-right: 5px;
+.method {
+    background: #faf8fc;
+    border: 1px solid #e9e0f1;
+    border-radius: 12px;
+    padding: 17px;
 }
 
-.client {
-    background: #faf7fb;
-    padding: 12px;
-    border-radius: 9px;
-    margin-top: 8px;
-}
-
-.empty {
-    color: #888;
-    font-size: 14px;
-}
+.method h3 { color: #65418b; }
 
 </style>
 </head>
 
 <body>
-<div class="container">
 
 <header>
-    <h1>Chatlyfriend Admin</h1>
-    <p>Manage listeners and client conversations.</p>
+    <h1>Chatlyfriend</h1>
+    <p>Administrator Control Centre</p>
 </header>
 
-<section class="panel">
+<main>
+
+<section class="section">
+    <h2>Platform Overview</h2>
+
+    <div class="overview">
+        <div class="metric">
+            <span>Total Listeners</span>
+            <h3 id="totalListeners">0</h3>
+        </div>
+
+        <div class="metric">
+            <span>Available Listeners</span>
+            <h3 id="availableListeners">0</h3>
+        </div>
+
+        <div class="metric">
+            <span>Active Clients</span>
+            <h3 id="activeClients">0</h3>
+        </div>
+
+        <div class="metric">
+            <span>Completed Sessions</span>
+            <h3 id="completedSessions">0</h3>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Client Allocation Methods</h2>
+
+    <div class="allocation-grid">
+
+        <div class="method">
+            <h3>Automatic Rotation</h3>
+            <p class="small">
+                Automatically assigns new clients to available
+                listeners with the fewest active conversations.
+            </p>
+            <button class="primary"
+                onclick="setMethod('automatic')">
+                Select Automatic
+            </button>
+        </div>
+
+        <div class="method">
+            <h3>Manual Allocation</h3>
+            <p class="small">
+                Administrator chooses which listener receives
+                each client.
+            </p>
+            <button class="secondary"
+                onclick="setMethod('manual')">
+                Select Manual
+            </button>
+        </div>
+
+        <div class="method">
+            <h3>Priority Allocation</h3>
+            <p class="small">
+                Administrator can directly assign a client
+                to a selected available listener.
+            </p>
+            <button class="secondary"
+                onclick="setMethod('priority')">
+                Select Priority
+            </button>
+        </div>
+
+    </div>
+
+    <p>Current allocation method:
+        <strong id="currentMethod">Automatic Rotation</strong>
+    </p>
+
+    <input id="clientName" placeholder="Client name or reference">
+
+    <div id="listenerPicker" style="display:none">
+        <select id="chosenListener">
+            <option value="">Choose a listener</option>
+        </select>
+    </div>
+
+    <button class="primary" onclick="allocateClient()">
+        Allocate Client
+    </button>
+
+</section>
+
+<section class="section">
     <h2>Listener Management</h2>
 
-    <input id="listenerName"
-           placeholder="Enter listener name">
+    <input id="listenerName" placeholder="Enter listener name">
 
-    <button onclick="addListener()">
+    <button class="primary" onclick="addListener()">
         + Add Listener
     </button>
 
     <div id="listenerList"></div>
 </section>
 
-<section class="panel">
-    <h2>Client Allocation</h2>
-
-    <input id="clientName"
-           placeholder="Enter client name">
-
-    <label>Allocation method</label>
-
-    <select id="allocationMethod">
-        <option value="automatic">
-            Automatic - Least Busy First
-        </option>
-        <option value="manual">
-            Manual - Choose Listener
-        </option>
-    </select>
-
-    <div id="manualSelection" style="display:none">
-        <select id="selectedListener"></select>
-    </div>
-
-    <button onclick="allocateClient()">
-        Allocate Client
-    </button>
-
-    <p id="allocationMessage"></p>
-</section>
-
-<section class="panel">
-    <h2>Active Conversations</h2>
+<section class="section">
+    <h2>Client Management</h2>
     <div id="clientList"></div>
 </section>
 
-</div>
+</main>
 
 <script>
-let listeners = [];
-let clients = [];
+
+let listeners = JSON.parse(
+    localStorage.getItem("cf_admin_listeners") || "[]"
+);
+
+let clients = JSON.parse(
+    localStorage.getItem("cf_admin_clients") || "[]"
+);
+
+let allocationMethod = "automatic";
+
+function save() {
+    localStorage.setItem(
+        "cf_admin_listeners",
+        JSON.stringify(listeners)
+    );
+
+    localStorage.setItem(
+        "cf_admin_clients",
+        JSON.stringify(clients)
+    );
+
+    render();
+}
+
+function safe(value) {
+    return String(value).replace(/[&<>"']/g, c => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+    })[c]);
+}
+
+function activeCount(id) {
+    return clients.filter(c =>
+        c.listenerId === id && c.status === "active"
+    ).length;
+}
+
+function setMethod(method) {
+    allocationMethod = method;
+
+    document.getElementById("currentMethod").textContent =
+        method === "automatic" ? "Automatic Rotation" :
+        method === "manual" ? "Manual Allocation" :
+        "Priority Allocation";
+
+    document.getElementById("listenerPicker").style.display =
+        method === "automatic" ? "none" : "block";
+}
 
 function addListener() {
-    const input = document.getElementById("listenerName");
-    const name = input.value.trim();
+    let name = document.getElementById("listenerName").value.trim();
 
-    if (!name) {
-        alert("Enter a listener name.");
-        return;
-    }
+    if (!name) return alert("Enter listener name.");
 
     listeners.push({
-        id: Date.now(),
+        id: Date.now().toString(),
         name: name,
         available: true
     });
 
-    input.value = "";
-    render();
-}
-
-function activeCount(listenerId) {
-    return clients.filter(client =>
-        client.listenerId === listenerId &&
-        client.active
-    ).length;
-}
-
-function addClientToListener(clientName, listener) {
-    clients.push({
-        id: Date.now(),
-        name: clientName,
-        listenerId: listener.id,
-        active: true
-    });
+    document.getElementById("listenerName").value = "";
+    save();
 }
 
 function allocateClient() {
-    const name = document.getElementById("clientName").value.trim();
-    const method = document.getElementById("allocationMethod").value;
-    const message = document.getElementById("allocationMessage");
+    let name = document.getElementById("clientName").value.trim();
 
-    if (!name) {
-        alert("Enter a client name.");
-        return;
-    }
+    if (!name) return alert("Enter client name.");
 
-    const available = listeners.filter(listener => listener.available);
+    let listener;
 
-    if (available.length === 0) {
-        message.textContent = "No listeners are currently available.";
-        return;
-    }
+    if (allocationMethod === "automatic") {
 
-    let chosen;
+        let available = listeners.filter(l => l.available);
 
-    if (method === "automatic") {
-        chosen = available.reduce((leastBusy, current) =>
-            activeCount(current.id) < activeCount(leastBusy.id)
-                ? current
-                : leastBusy
+        if (!available.length)
+            return alert("No available listeners.");
+
+        available.sort((a,b) =>
+            activeCount(a.id) - activeCount(b.id)
         );
-    } else {
-        const id = Number(document.getElementById("selectedListener").value);
-        chosen = available.find(listener => listener.id === id);
 
-        if (!chosen) {
-            alert("Choose an available listener.");
-            return;
-        }
+        listener = available[0];
+
+    } else {
+
+        let id = document.getElementById("chosenListener").value;
+
+        listener = listeners.find(l => l.id === id);
+
+        if (!listener) return alert("Choose a listener.");
+
+        if (!listener.available)
+            return alert("This listener is unavailable.");
     }
 
-    addClientToListener(name, chosen);
+    clients.push({
+        id: Date.now().toString(),
+        name: name,
+        listenerId: listener.id,
+        status: "active",
+        priority: allocationMethod === "priority",
+        date: new Date().toLocaleString()
+    });
 
     document.getElementById("clientName").value = "";
 
-    message.textContent =
-        name + " allocated to " + chosen.name + ".";
+    save();
 
-    render();
+    alert("Client allocated to " + listener.name);
 }
 
-function toggleAvailability(id) {
-    const listener = listeners.find(item => item.id === id);
+function toggleListener(id) {
+    let listener = listeners.find(l => l.id === id);
+
     if (!listener) return;
 
-    listener.available = !listener.available;
-    render();
-}
-
-function changeAssignment(clientId) {
-    const client = clients.find(item => item.id === clientId);
-    if (!client) return;
-
-    const available = listeners.filter(item => item.available);
-
-    if (available.length === 0) {
-        alert("No available listeners.");
-        return;
+    if (listener.available && activeCount(id) > 0) {
+        return alert(
+            "This listener has active clients. Reassign or complete them first."
+        );
     }
 
-    const choice = prompt(
-        "Enter the number of the listener:\n" +
-        available.map((item, index) =>
-            (index + 1) + ". " + item.name
-        ).join("\n")
+    listener.available = !listener.available;
+    save();
+}
+
+function reassignClient(id) {
+    let client = clients.find(c => c.id === id);
+
+    if (!client || client.status !== "active") return;
+
+    let available = listeners.filter(l =>
+        l.available && l.id !== client.listenerId
     );
 
-    const index = Number(choice) - 1;
+    if (!available.length)
+        return alert("No other available listeners.");
 
-    if (index >= 0 && index < available.length) {
-        client.listenerId = available[index].id;
-        render();
-    }
+    let options = available.map((l,i) =>
+        (i+1) + ". " + l.name +
+        " (" + activeCount(l.id) + " active)"
+    ).join("\n");
+
+    let choice = prompt("Choose a listener:\n" + options);
+
+    if (choice === null) return;
+
+    let selected = available[Number(choice)-1];
+
+    if (!selected) return alert("Invalid selection.");
+
+    client.listenerId = selected.id;
+    save();
 }
 
-function closeClient(id) {
-    const client = clients.find(item => item.id === id);
+function completeSession(id) {
+    let client = clients.find(c => c.id === id);
+
     if (!client) return;
 
-    client.active = false;
-    render();
+    if (!confirm("Mark this session as completed?")) return;
+
+    client.status = "completed";
+    save();
 }
 
 function render() {
-    const listenerList = document.getElementById("listenerList");
-    const clientList = document.getElementById("clientList");
-    const selected = document.getElementById("selectedListener");
 
-    listenerList.innerHTML = "";
-    clientList.innerHTML = "";
-    selected.innerHTML = "";
+    document.getElementById("totalListeners").textContent =
+        listeners.length;
 
-    listeners.forEach(listener => {
-        const count = activeCount(listener.id);
+    document.getElementById("availableListeners").textContent =
+        listeners.filter(l => l.available).length;
 
-        listenerList.innerHTML += `
-            <div class="listener">
-                <strong>${escapeHTML(listener.name)}</strong>
-                <p>Active clients: ${count}</p>
-                <p class="${listener.available ? "status" : "unavailable"}">
-                    ${listener.available ? "Available" : "Unavailable"}
+    document.getElementById("activeClients").textContent =
+        clients.filter(c => c.status === "active").length;
+
+    document.getElementById("completedSessions").textContent =
+        clients.filter(c => c.status === "completed").length;
+
+    document.getElementById("listenerList").innerHTML =
+        listeners.map(l => `
+            <div class="item">
+                <strong>${safe(l.name)}</strong>
+                <span class="tag">
+                    ${l.available ? "Available" : "Unavailable"}
+                </span>
+                <p class="small">
+                    Active clients: ${activeCount(l.id)}
                 </p>
-                <button class="small-button"
-                    onclick="toggleAvailability(${listener.id})">
-                    ${listener.available ? "Set Unavailable" : "Set Available"}
+                <button class="secondary"
+                    onclick="toggleListener('${l.id}')">
+                    ${l.available ? "Mark Unavailable" : "Mark Available"}
                 </button>
             </div>
-        `;
+        `).join("") || "<p>No listeners added yet.</p>";
 
-        if (listener.available) {
-            const option = document.createElement("option");
-            option.value = listener.id;
-            option.textContent = listener.name;
-            selected.appendChild(option);
-        }
-    });
+    document.getElementById("chosenListener").innerHTML =
+        '<option value="">Choose a listener</option>' +
+        listeners.filter(l => l.available).map(l =>
+            `<option value="${l.id}">
+                ${safe(l.name)} (${activeCount(l.id)} active)
+            </option>`
+        ).join("");
 
-    const activeClients = clients.filter(client => client.active);
+    document.getElementById("clientList").innerHTML =
+        clients.map(c => {
+            let listener = listeners.find(l => l.id === c.listenerId);
 
-    if (!activeClients.length) {
-        clientList.innerHTML = '<p class="empty">No active conversations yet.</p>';
-    }
+            return `
+                <div class="item">
+                    <strong>${safe(c.name)}</strong>
+                    <p class="small">
+                        Assigned listener:
+                        ${safe(listener ? listener.name : "Unassigned")}
+                    </p>
+                    <span class="tag">${c.status}</span>
+                    ${c.priority ? '<span class="tag">Priority</span>' : ''}
+                    <p class="small">${safe(c.date)}</p>
 
-    activeClients.forEach(client => {
-        const listener = listeners.find(item =>
-            item.id === client.listenerId
-        );
-
-        clientList.innerHTML += `
-            <div class="client">
-                <strong>${escapeHTML(client.name)}</strong>
-                <p>Listener: ${listener ? escapeHTML(listener.name) : "Unassigned"}</p>
-                <button class="small-button"
-                    onclick="changeAssignment(${client.id})">
-                    Reassign
-                </button>
-                <button class="small-button"
-                    onclick="closeClient(${client.id})">
-                    Close Conversation
-                </button>
-            </div>
-        `;
-    });
+                    ${c.status === "active" ? `
+                        <button class="secondary"
+                            onclick="reassignClient('${c.id}')">
+                            Reassign
+                        </button>
+                        <button class="green"
+                            onclick="completeSession('${c.id}')">
+                            Complete Session
+                        </button>
+                    ` : ""}
+                </div>
+            `;
+        }).join("") || "<p>No clients allocated yet.</p>";
 }
-
-function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-    })[char]);
-}
-
-document.getElementById("allocationMethod").addEventListener("change", function() {
-    document.getElementById("manualSelection").style.display =
-        this.value === "manual" ? "block" : "none";
-});
 
 render();
+
 </script>
 
 </body>
