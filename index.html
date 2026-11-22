@@ -1,28 +1,457 @@
-♡ Chatlyfriend
-Home About Why Chatlyfriend
-WELCOME TO CHATLYFRIEND
-Some things are easier to say when someone is willing to listen.
-Chatlyfriend is a place to chat, listen and express yourself freely. Share what's on your mind and connect with someone who listens without judgment.
 
-Start a Conversation →
-♡ Your privacy matters. Your feelings matter.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-♡
-No Judgment
-Talk openly. Be yourself. You deserve to be heard.
+<title>Chatlyfriend | A Place to Be Heard</title>
 
-✧
-Someone to Listen
-Real conversations and genuine human attention.
+<meta name="description" content="Chatlyfriend is a private human connection and listening platform. Talk freely, share your feelings and find someone willing to listen without judgment.">
 
-☁
-Talk About Anything
-Your everyday moments, your worries and the things difficult to say.
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-You don't have to keep everything inside.
-Sometimes, being heard makes all the difference.
-Welcome to Chatlyfriend.
+html {
+    scroll-behavior: smooth;
+}
 
-Discover Chatlyfriend
-Your conversation starts here.
-We're preparing a private way for you to connect with a listener.
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fcf8f3;
+    color: #342b35;
+    line-height: 1.7;
+}
+
+:root {
+    --plum: #39243f;
+    --purple: #684b70;
+    --gold: #c49a6c;
+    --cream: #fcf8f3;
+    --soft: #f0e8ef;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #fff;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 750;
+    color: var(--plum);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--plum);
+    margin-left: 25px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hero {
+    min-height: 590px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 20px;
+    background:
+      radial-gradient(circle at 20% 20%, #73577b 0%, transparent 35%),
+      linear-gradient(135deg, #39243f, #563c5d);
+    color: white;
+}
+
+.hero-content {
+    max-width: 760px;
+}
+
+.eyebrow {
+    color: #e2c39e;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: 1.12;
+    font-weight: normal;
+    margin-bottom: 24px;
+}
+
+.hero h1 span {
+    color: #dfbb91;
+    font-style: italic;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: #eee5ef;
+    font-size: 18px;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 32px;
+    border-radius: 40px;
+    background: var(--gold);
+    color: #302037;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+.small-note {
+    display: block;
+    color: #d9c9dc;
+    font-size: 13px;
+    margin-top: 18px;
+}
+
+.intro {
+    max-width: 850px;
+    margin: auto;
+    padding: 85px 25px;
+    text-align: center;
+}
+
+.intro h2,
+.section-title {
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 4vw, 43px);
+    color: var(--plum);
+    font-weight: normal;
+    margin-bottom: 22px;
+}
+
+.intro p {
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+.quote {
+    background: var(--soft);
+    padding: 65px 20px;
+    text-align: center;
+}
+
+.quote p {
+    font-family: Georgia, serif;
+    color: var(--plum);
+    font-size: clamp(24px, 4vw, 36px);
+    font-style: italic;
+    max-width: 750px;
+    margin: auto;
+}
+
+.quote small {
+    display: block;
+    color: #8a6c8e;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.experience {
+    padding: 85px 8%;
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 45px auto 0;
+}
+
+.card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(57,36,63,0.06);
+}
+
+.card .symbol {
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: var(--plum);
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+    font-size: 23px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #665d67;
+}
+
+.privacy {
+    background: #eee5ef;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.privacy-content {
+    max-width: 750px;
+    margin: auto;
+}
+
+.privacy p {
+    margin: 15px 0;
+    font-size: 17px;
+}
+
+.closing {
+    padding: 90px 20px;
+    text-align: center;
+    background: var(--plum);
+    color: white;
+}
+
+.closing h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(34px, 5vw, 48px);
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.closing p {
+    margin-bottom: 20px;
+    color: #e8dce9;
+}
+
+footer {
+    background: #28192d;
+    padding: 35px 20px;
+    text-align: center;
+    color: #d8cbd9;
+    font-size: 13px;
+}
+
+footer strong {
+    color: white;
+    font-size: 21px;
+}
+
+footer p {
+    margin: 8px;
+}
+
+@media(max-width: 700px) {
+    nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0 8px;
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 540px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .experience,
+    .intro {
+        padding: 60px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Chatly<span>friend</span></div>
+
+    <div>
+        <a href="#about">Our Story</a>
+        <a href="#experience">What We Offer</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#contact">Connect</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+
+        <div class="eyebrow">A little space for you</div>
+
+        <h1>
+            Some things are easier to say
+            <span>when someone listens.</span>
+        </h1>
+
+        <p>
+            Welcome to Chatlyfriend. A place for real conversations,
+            genuine attention and the freedom to express what
+            you don't always find the words to say.
+        </p>
+
+        <a href="#contact" class="button">Let's Talk</a>
+
+        <span class="small-note">
+            No judgment. No pressure. Just a human connection.
+        </span>
+
+    </div>
+</header>
+
+<section class="intro" id="about">
+
+    <h2>You don't have to keep it all inside.</h2>
+
+    <p>
+        Life isn't always easy to explain. Sometimes you're happy.
+        Sometimes you're confused. Sometimes you carry things
+        that you cannot comfortably share with the people around you.
+    </p>
+
+    <p>
+        Maybe it's a relationship, marriage, family, work,
+        addiction, disappointment, personal struggles or
+        something you have never told anyone.
+    </p>
+
+    <p>
+        Chatlyfriend exists because we believe that being heard
+        matters. You deserve a conversation where your feelings
+        are welcomed and your experiences are treated with respect.
+    </p>
+
+</section>
+
+<section class="quote">
+    <p>
+        "A problem shared is a problem half solved."
+    </p>
+    <small>THE CHATLYFRIEND THOUGHT</small>
+</section>
+
+<section class="experience" id="experience">
+
+    <h2 class="section-title">More than just chatting.</h2>
+
+    <p>
+        A meaningful conversation can make a difference.
+        Here is what you will find at Chatlyfriend.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="symbol">♡</div>
+            <h3>Talk Freely</h3>
+            <p>
+                Express your thoughts, share your experiences
+                and talk about the things that matter to you.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="symbol">✧</div>
+            <h3>Be Truly Heard</h3>
+            <p>
+                Enjoy attentive human conversations without
+                unnecessary judgment or assumptions.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="symbol">∞</div>
+            <h3>Feel Connected</h3>
+            <p>
+                Find room for honest expression, understanding
+                and genuine human connection.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="privacy" id="privacy">
+
+    <div class="privacy-content">
+
+        <h2 class="section-title">Your story deserves respect.</h2>
+
+        <p>
+            We understand that some things are difficult to share
+            because of fear of judgment, misunderstanding or gossip.
+        </p>
+
+        <p>
+            Your conversations deserve care, discretion and respect.
+            We take privacy seriously and aim to create an environment
+            where you can express yourself comfortably.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="closing" id="contact">
+
+    <h2>Whenever you're ready, we're here.</h2>
+
+    <p>
+        You don't need to have everything figured out.
+        You can simply start with a conversation.
+    </p>
+
+    <a href="mailto:chatlyfriend@gmail.com" class="button">
+        Make an Enquiry
+    </a>
+
+</section>
+
+<footer>
+
+    <p><strong>Chatlyfriend</strong></p>
+
+    <p>You deserve to be heard.</p>
+
+    <p>
+        A private human connection and listening platform.
+    </p>
+
+    <p>© 2026 Chatlyfriend. All rights reserved.</p>
+
+</footer>
+
+</body>
+</html>
+
