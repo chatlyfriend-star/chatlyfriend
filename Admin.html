@@ -401,13 +401,50 @@ function allocateClient(client, method, selectedId) {
   return true;
 }
 
-function addListener() {
+async function addListener() {
   const name = document.getElementById("listenerName").value.trim();
   const email = document.getElementById("listenerEmail").value.trim();
 
   if (!name) {
     alert("Please enter the listener's name.");
     return;
+  }
+
+  const id = crypto.randomUUID();
+
+  const { error } = await supabaseClient
+    .from("listeners")
+    .insert({
+      id,
+      name,
+      email: email || null,
+      status: "available",
+      priority: false,
+      completed: 0
+    });
+
+  if (error) {
+    alert("Could not save listener: " + error.message);
+    return;
+  }
+
+  data.listeners.push({
+    id,
+    name,
+    email,
+    available: true,
+    priority: false,
+    completed: 0
+  });
+
+  document.getElementById("listenerName").value = "";
+  document.getElementById("listenerEmail").value = "";
+
+  saveData();
+  refreshDashboard();
+
+  alert("Listener saved successfully.");
+}
   }
 
   data.listeners.push({
