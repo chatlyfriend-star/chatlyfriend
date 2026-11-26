@@ -445,24 +445,6 @@ async function addListener() {
 
   alert("Listener saved successfully.");
 }
-  }
-
-  data.listeners.push({
-    id: crypto.randomUUID(),
-    name,
-    email,
-    available: true,
-    priority: false,
-    completed: 0
-  });
-
-  document.getElementById("listenerName").value = "";
-  document.getElementById("listenerEmail").value = "";
-
-  saveData();
-  refreshDashboard();
-}
-
 function addClient() {
   const name = document.getElementById("clientName").value.trim();
   const selectedId = document.getElementById("manualListener").value;
