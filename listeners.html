@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose a Listener | Chatlyfriend</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f0fa;
+      color: #30213f;
+    }
+
+    header {
+      background: #352044;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      color: #e9c77a;
+    }
+
+    header p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 45px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    h2 { color: #49305e; }
+
+    .intro {
+      line-height: 1.7;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    #listenerList {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .listener-card {
+      background: white;
+      border: 1px solid #d9c28a;
+      border-radius: 16px;
+      padding: 28px 20px;
+      box-shadow: 0 4px 14px rgba(40, 20, 55, 0.07);
+    }
+
+    .listener-card h3 {
+      color: #49305e;
+      margin-top: 0;
+    }
+
+    .status {
+      color: #28764a;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .message {
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      line-height: 1.6;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 35px;
+      color: #49305e;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #6d6076;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Chatlyfriend</h1>
+    <p>You deserve to be heard.</p>
+  </header>
+
+  <main>
+    <h2>Choose a Listener</h2>
+    <p class="intro">
+      Sometimes, all you need is someone who listens.
+      Choose an available listener and have a private,
+      meaningful conversation without judgment.
+    </p>
+
+    <div id="listenerList">
+      <p class="message">Loading available listeners...</p>
+    </div>
+
+    <a class="back-link" href="index.html">← Back to homepage</a>
+  </main>
+
+  <footer>
+    © Chatlyfriend. A little space for you.
+  </footer>
+
+  <script>
+    const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    async function loadListeners() {
+      const container = document.getElementById("listenerList");
+
+      try {
+        const { data, error } = await supabaseClient
+          .from("listeners")
+          .select("id, name, status")
+          .eq("status", "available");
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+          container.innerHTML = `
+            <div class="message">
+              <h3>No listeners are available right now.</h3>
+              <p>Please check back soon. We'd love to hear from you.</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = data.map(listener => `
+          <div class="listener-card">
+            <h3>${escapeHTML(listener.name)}</h3>
+            <p class="status">● Available</p>
+          </div>
+        `).join("");
+
+      } catch (error) {
+        console.error("Listener loading error:", error);
+        container.innerHTML = `
+          <div class="message">
+            We couldn't load the listeners right now.
+            Please try again later.
+          </div>
+        `;
+      }
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[character]);
+    }
+
+    loadListeners();
+  </script>
+
+</body>
+</html>
