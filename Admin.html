@@ -1,6 +1,4 @@
 
-
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,6 +162,13 @@ th { color: var(--muted); }
   font-size: 14px;
 }
 
+.enquiry-message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 650px;
+  line-height: 1.5;
+}
+
 footer {
   text-align: center;
   padding: 25px;
@@ -311,6 +316,44 @@ footer {
   </div>
 </section>
 
+<!-- NEW: CLIENT ENQUIRIES SECTION -->
+<section class="section panel">
+  <h2>Client Enquiries</h2>
+  <p class="muted">
+    Messages sent through the Chatlyfriend homepage enquiry form.
+  </p>
+
+  <button
+    type="button"
+    class="secondary"
+    id="refreshEnquiriesButton"
+  >
+    Refresh Enquiries
+  </button>
+
+  <p id="enquiryMessage" class="muted" aria-live="polite">
+    Enquiries will appear here after loading.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Date Received</th>
+          <th>Message</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="enquiryTable">
+        <tr>
+          <td colspan="3" class="empty">Enquiries have not been loaded yet.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<!-- END NEW SECTION -->
+
 <section class="section panel">
   <h2>Platform Activity</h2>
   <p class="muted" id="activitySummary">No activity recorded yet.</p>
@@ -445,6 +488,7 @@ async function addListener() {
 
   alert("Listener saved successfully.");
 }
+
 function addClient() {
   const name = document.getElementById("clientName").value.trim();
   const selectedId = document.getElementById("manualListener").value;
@@ -668,16 +712,72 @@ function refreshDashboard() {
 refreshDashboard();
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = "https://qjkfpgrtbpyngectvpyx.supabase.co";
- const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_W7Ibe5HSUugPbl1SpyoMFw_rzoag2l8";
- const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
- const loginPanel = document.getElementById("loginPanel");
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_W7Ibe5HSUugPbl1SpyoMFw_rzoag2l8";
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+const loginPanel = document.getElementById("loginPanel");
 const dashboard = document.getElementById("dashboard");
 const loginForm = document.getElementById("adminLoginForm");
 const loginMessage = document.getElementById("loginMessage");
+
+// NEW: Load enquiries from Supabase after administrator access is verified.
+async function loadEnquiries() {
+  const enquiryTable = document.getElementById("enquiryTable");
+  const enquiryMessage = document.getElementById("enquiryMessage");
+
+  enquiryMessage.textContent = "Loading enquiries...";
+  enquiryTable.innerHTML =
+    '<tr><td colspan="3" class="empty">Loading...</td></tr>';
+
+  const { data: enquiries, error } = await supabaseClient
+    .from("enquiries")
+    .select("id, message, status, created_at")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    enquiryMessage.textContent = "Could not load enquiries: " + error.message;
+    enquiryTable.innerHTML =
+      '<tr><td colspan="3" class="empty">Unable to load enquiries.</td></tr>';
+    return;
+  }
+
+  if (!enquiries || enquiries.length === 0) {
+    enquiryMessage.textContent = "No enquiries have been received yet.";
+    enquiryTable.innerHTML =
+      '<tr><td colspan="3" class="empty">No enquiries received yet.</td></tr>';
+    return;
+  }
+
+  enquiryMessage.textContent =
+    `${enquiries.length} enquiry/enquiries received.`;
+
+  enquiryTable.innerHTML = enquiries.map(enquiry => {
+    const receivedDate = enquiry.created_at
+      ? new Date(enquiry.created_at).toLocaleString()
+      : "Date unavailable";
+
+    return `
+      <tr>
+        <td>${safe(receivedDate)}</td>
+        <td class="enquiry-message">${safe(enquiry.message)}</td>
+        <td>
+          <span class="status">${safe(enquiry.status || "new")}</span>
+        </td>
+      </tr>
+    `;
+  }).join("");
+}
+
+document
+  .getElementById("refreshEnquiriesButton")
+  .addEventListener("click", loadEnquiries);
 
 async function checkAdminAccess() {
   const { data: sessionData, error: sessionError } =
@@ -707,6 +807,9 @@ async function checkAdminAccess() {
 
   loginPanel.hidden = true;
   dashboard.hidden = false;
+
+  // Load enquiries only after admin verification succeeds.
+  await loadEnquiries();
 }
 
 loginForm.addEventListener("submit", async function(event) {
@@ -715,6 +818,7 @@ loginForm.addEventListener("submit", async function(event) {
 
   const email = document.getElementById("adminEmail").value.trim();
   const password = document.getElementById("adminPassword").value;
+
   const { error } = await supabaseClient.auth.signInWithPassword({
     email,
     password
@@ -730,6 +834,7 @@ loginForm.addEventListener("submit", async function(event) {
 
 checkAdminAccess();
 </script>
+
 </body>
 </html>
-save permanently
+
