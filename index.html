@@ -4,479 +4,386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Chatlyfriend | You Deserve to Be Heard</title>
 <meta name="description" content="Chatlyfriend is a place to talk, share your feelings and find genuine human connection. Be heard without judgment.">
 
 <style>
 :root {
-    --royal: #173B75;
-    --deep: #102B55;
-    --blue: #28558E;
-    --pale: #DCEBFA;
-    --light: #C7DDF3;
-    --gold: #D5AD55;
-    --gold-light: #E9CD8D;
-    --text: #183453;
-    --muted: #536D89;
+    --royal:#173B75;
+    --deep:#102B55;
+    --blue:#28558E;
+    --pale:#DCEBFA;
+    --light:#C7DDF3;
+    --gold:#D5AD55;
+    --gold-light:#E9CD8D;
+    --text:#183453;
+    --muted:#536D89;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:var(--pale);
+    color:var(--text);
+    line-height:1.7;
 }
-
-html {
-    scroll-behavior: smooth;
+nav{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 7%;
+    padding-right:110px;
+    background:var(--pale);
+    gap:20px;
 }
-
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--pale);
-    color: var(--text);
-    line-height: 1.7;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-shrink:0;
 }
-
-nav {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 22px 8%;
-    padding-right: 110px;
-    background: var(--pale);
+.brand-logo{
+    width:54px;
+    height:54px;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    background:var(--light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--royal);
+    font-family:Georgia,serif;
+    font-size:13px;
+    font-weight:bold;
+    overflow:hidden;
 }
-
-.logo {
-    font-size: 25px;
-    font-weight: 750;
-    color: var(--royal);
-    letter-spacing: -1px;
+.brand-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
-
-.logo span {
-    color: #A77D2C;
+.logo{
+    font-size:25px;
+    font-weight:750;
+    color:var(--royal);
+    letter-spacing:-1px;
 }
-
-nav a {
-    text-decoration: none;
-    color: var(--royal);
-    margin-left: 23px;
-    font-size: 14px;
-    font-weight: 600;
+.logo span{color:#A77D2C}
+nav a{
+    text-decoration:none;
+    color:var(--royal);
+    margin-left:18px;
+    font-size:14px;
+    font-weight:600;
 }
-
-nav a:hover {
-    color: #A77D2C;
+nav a:hover{color:#A77D2C}
+.signature{
+    position:absolute;
+    right:3%;
+    top:8px;
+    color:var(--royal);
+    font-family:"Brush Script MT","Segoe Script",cursive;
+    font-size:27px;
+    font-weight:bold;
+    font-style:italic;
+    transform:rotate(-13deg);
+    opacity:.75;
+    z-index:2;
 }
-
-/* RWM SIGNATURE */
-
-.signature {
-    position: absolute;
-    right: 3%;
-    top: 8px;
-    color: var(--royal);
-    font-family: "Brush Script MT", "Segoe Script", cursive;
-    font-size: 27px;
-    font-weight: bold;
-    font-style: italic;
-    transform: rotate(-13deg);
-    opacity: 0.75;
-    z-index: 2;
+.signature::after{
+    content:"";
+    position:absolute;
+    width:115%;
+    height:2px;
+    background:currentColor;
+    left:-5%;
+    top:53%;
+    transform:rotate(-17deg);
+    border-radius:50%;
 }
-
-.signature::after {
-    content: "";
-    position: absolute;
-    width: 115%;
-    height: 2px;
-    background: currentColor;
-    left: -5%;
-    top: 53%;
-    transform: rotate(-17deg);
-    border-radius: 50%;
+.button{
+    display:inline-block;
+    padding:15px 32px;
+    border-radius:40px;
+    background:var(--gold);
+    color:var(--deep);
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+    border:0;
+    cursor:pointer;
 }
-
-/* BUTTONS */
-
-.button {
-    display: inline-block;
-    padding: 15px 32px;
-    border-radius: 40px;
-    background: var(--gold);
-    color: var(--deep);
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+.button:hover{
+    background:var(--gold-light);
+    transform:translateY(-3px);
 }
-
-.button:hover {
-    background: var(--gold-light);
-    transform: translateY(-3px);
-}
-
-/* HERO */
-
-.hero {
-    min-height: 590px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 90px 20px;
+.hero{
+    min-height:590px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:90px 20px;
     background:
-      radial-gradient(circle at 20% 20%, #38669F 0%, transparent 38%),
-      linear-gradient(135deg, var(--deep), var(--royal));
-    color: var(--pale);
+      radial-gradient(circle at 20% 20%,#38669F 0%,transparent 38%),
+      linear-gradient(135deg,var(--deep),var(--royal));
+    color:var(--pale);
+}
+.hero-content{max-width:760px}
+.eyebrow{
+    color:var(--gold-light);
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:24px;
+}
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:clamp(42px,7vw,72px);
+    line-height:1.12;
+    font-weight:normal;
+    margin-bottom:24px;
+}
+.hero h1 span{color:var(--gold-light);font-style:italic}
+.hero p{
+    max-width:600px;
+    margin:0 auto 30px;
+    color:#DCEBFA;
+    font-size:18px;
+}
+.small-note{
+    display:block;
+    color:#C7DDF3;
+    font-size:13px;
+    margin-top:18px;
+}
+.intro{
+    max-width:850px;
+    margin:auto;
+    padding:85px 25px;
+    text-align:center;
+}
+.intro h2,.section-title{
+    font-family:Georgia,serif;
+    font-size:clamp(30px,4vw,43px);
+    color:var(--royal);
+    font-weight:normal;
+    margin-bottom:22px;
+}
+.intro p{font-size:17px;margin-bottom:18px}
+.quote{
+    background:var(--light);
+    padding:65px 20px;
+    text-align:center;
+}
+.quote p{
+    font-family:Georgia,serif;
+    color:var(--royal);
+    font-size:clamp(24px,4vw,36px);
+    font-style:italic;
+    max-width:750px;
+    margin:auto;
+}
+.quote small{
+    display:block;
+    color:var(--blue);
+    margin-top:20px;
+    letter-spacing:2px;
 }
 
-.hero-content {
-    max-width: 760px;
+/* TOPICS */
+.experience{
+    padding:85px 8%;
+    text-align:center;
+    background:var(--royal);
 }
-
-.eyebrow {
-    color: var(--gold-light);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 24px;
+.experience .section-title{color:var(--pale)}
+.experience-intro{
+    color:var(--pale);
+    max-width:700px;
+    margin:0 auto 35px;
 }
-
-.hero h1 {
-    font-family: Georgia, serif;
-    font-size: clamp(42px, 7vw, 72px);
-    line-height: 1.12;
-    font-weight: normal;
-    margin-bottom: 24px;
+.heart-symbol{
+    color:var(--gold);
+    font-size:38px;
+    line-height:1;
+    margin-bottom:16px;
 }
-
-.hero h1 span {
-    color: var(--gold-light);
-    font-style: italic;
+.topic-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:15px;
+    max-width:1000px;
+    margin:35px auto 0;
 }
-
-.hero p {
-    max-width: 600px;
-    margin: 0 auto 30px;
-    color: #DCEBFA;
-    font-size: 18px;
+.topic{
+    background:var(--pale);
+    border:1px solid var(--gold);
+    border-radius:14px;
+    padding:20px 12px;
+    min-height:105px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:7px;
+    box-shadow:0 7px 20px rgba(0,0,0,.10);
 }
-
-.small-note {
-    display: block;
-    color: #C7DDF3;
-    font-size: 13px;
-    margin-top: 18px;
+.topic-icon{
+    color:#A77D2C;
+    font-size:27px;
+    line-height:1.2;
 }
-
-/* INTRODUCTION */
-
-.intro {
-    max-width: 850px;
-    margin: auto;
-    padding: 85px 25px;
-    text-align: center;
+.topic h3{
+    color:var(--royal);
+    font-family:Georgia,serif;
+    font-size:17px;
+    font-weight:normal;
 }
-
-.intro h2,
-.section-title {
-    font-family: Georgia, serif;
-    font-size: clamp(30px, 4vw, 43px);
-    color: var(--royal);
-    font-weight: normal;
-    margin-bottom: 22px;
+.how-it-works{
+    background:var(--light);
+    padding:80px 8%;
+    text-align:center;
 }
-
-.intro p {
-    font-size: 17px;
-    margin-bottom: 18px;
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    max-width:1000px;
+    margin:40px auto 0;
 }
-
-/* QUOTE */
-
-.quote {
-    background: var(--light);
-    padding: 65px 20px;
-    text-align: center;
+.step{padding:25px}
+.step-number{
+    width:48px;
+    height:48px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:var(--royal);
+    color:var(--gold-light);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    font-size:20px;
 }
-
-.quote p {
-    font-family: Georgia, serif;
-    color: var(--royal);
-    font-size: clamp(24px, 4vw, 36px);
-    font-style: italic;
-    max-width: 750px;
-    margin: auto;
+.step h3{
+    color:var(--royal);
+    margin-bottom:10px;
+    font-family:Georgia,serif;
+    font-size:22px;
 }
-
-.quote small {
-    display: block;
-    color: var(--blue);
-    margin-top: 20px;
-    letter-spacing: 2px;
+.privacy{
+    background:var(--pale);
+    padding:80px 20px;
+    text-align:center;
 }
-
-/* SERVICES */
-
-.experience {
-    padding: 85px 8%;
-    text-align: center;
-    background: var(--pale);
+.privacy-content{max-width:750px;margin:auto}
+.privacy p{margin:15px 0;font-size:17px}
+.closing{
+    padding:90px 20px;
+    text-align:center;
+    background:var(--royal);
+    color:var(--pale);
 }
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    max-width: 1100px;
-    margin: 45px auto 0;
+.closing h2{
+    font-family:Georgia,serif;
+    font-size:clamp(34px,5vw,48px);
+    font-weight:normal;
+    margin-bottom:15px;
 }
-
-.card {
-    background: #C7DDF3;
-    padding: 35px 25px;
-    border-radius: 16px;
-    border: 1px solid #B4CDE8;
-    box-shadow: 0 8px 30px rgba(23,59,117,0.08);
-}
-
-.card .symbol {
-    font-size: 32px;
-    color: #A77D2C;
-    margin-bottom: 15px;
-}
-
-.card h3 {
-    color: var(--royal);
-    margin-bottom: 12px;
-    font-family: Georgia, serif;
-    font-size: 23px;
-}
-
-.card p {
-    font-size: 15px;
-    color: var(--muted);
-}
-
-/* HOW IT WORKS */
-
-.how-it-works {
-    background: #C7DDF3;
-    padding: 80px 8%;
-    text-align: center;
-}
-
-.steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    max-width: 1000px;
-    margin: 40px auto 0;
-}
-
-.step {
-    padding: 25px;
-}
-
-.step-number {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 18px;
-    border-radius: 50%;
-    background: var(--royal);
-    color: var(--gold-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.step h3 {
-    color: var(--royal);
-    margin-bottom: 10px;
-    font-family: Georgia, serif;
-    font-size: 22px;
-}
-
-/* PRIVACY */
-
-.privacy {
-    background: var(--pale);
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.privacy-content {
-    max-width: 750px;
-    margin: auto;
-}
-
-.privacy p {
-    margin: 15px 0;
-    font-size: 17px;
-}
-
-/* CLOSING */
-
-.closing {
-    padding: 90px 20px;
-    text-align: center;
-    background: var(--royal);
-    color: var(--pale);
-}
-
-.closing h2 {
-    font-family: Georgia, serif;
-    font-size: clamp(34px, 5vw, 48px);
-    font-weight: normal;
-    margin-bottom: 15px;
-}
-
-.closing p {
-    margin-bottom: 25px;
-    color: #DCEBFA;
-}
+.closing p{margin-bottom:25px;color:#DCEBFA}
 
 /* ENQUIRIES */
-
-.query-section {
-    max-width: 650px;
-    margin: 45px auto;
-    padding: 30px 22px;
-    background: var(--light);
-    border: 1px solid #B4CDE8;
-    border-radius: 20px;
-    text-align: center;
+.query-section{
+    max-width:650px;
+    margin:45px auto;
+    padding:30px 22px;
+    background:var(--light);
+    border:1px solid #B4CDE8;
+    border-radius:20px;
+    text-align:center;
 }
-
-.query-section h2 {
-    font-family: Georgia, serif;
-    color: var(--royal);
-    font-size: 25px;
-    margin-bottom: 8px;
+.query-section h2{
+    font-family:Georgia,serif;
+    color:var(--royal);
+    font-size:25px;
+    margin-bottom:8px;
 }
-
-.query-section p {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 18px;
+.query-section p{
+    font-size:14px;
+    color:var(--muted);
+    margin-bottom:18px;
 }
-
-.query-section textarea {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #9DB9D9;
-    border-radius: 12px;
-    background: var(--pale);
-    color: var(--text);
-    font-family: inherit;
-    font-size: 15px;
-    resize: vertical;
-    margin-bottom: 15px;
+.query-section textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #9DB9D9;
+    border-radius:12px;
+    background:var(--pale);
+    color:var(--text);
+    font-family:inherit;
+    font-size:15px;
+    resize:vertical;
+    margin-bottom:15px;
 }
-
-.query-section button {
-    background: var(--royal);
-    color: var(--pale);
-    border: none;
-    border-radius: 40px;
-    padding: 12px 28px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
+.query-section button{
+    background:var(--royal);
+    color:var(--pale);
+    border:none;
+    border-radius:40px;
+    padding:12px 28px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
 }
-
-.query-section button:hover {
-    background: var(--deep);
+.query-section button:hover{background:var(--deep)}
+#queryStatus{
+    margin-top:15px;
+    font-weight:600;
+    min-height:24px;
 }
-
-/* FOOTER */
-
-footer {
-    background: var(--deep);
-    padding: 35px 20px;
-    text-align: center;
-    color: #C7DDF3;
-    font-size: 13px;
+footer{
+    background:var(--deep);
+    padding:35px 20px;
+    text-align:center;
+    color:#C7DDF3;
+    font-size:13px;
 }
+footer strong{color:var(--gold-light);font-size:21px}
+footer p{margin:8px}
+footer .email{color:var(--gold-light)}
 
-footer strong {
-    color: var(--gold-light);
-    font-size: 21px;
+@media(max-width:700px){
+    nav{
+        flex-direction:column;
+        gap:12px;
+        padding:18px 15px;
+        padding-right:65px;
+    }
+    .brand{justify-content:center}
+    .logo{font-size:23px}
+    nav div:last-child{
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+    nav a{margin:0;font-size:12px}
+    .signature{right:12px;top:10px;font-size:23px}
+    .hero{min-height:540px;padding:70px 22px}
+    .hero p{font-size:16px}
+    .topic-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+    .topic{padding:16px 8px;min-height:100px}
+    .topic h3{font-size:15px}
+    .steps{grid-template-columns:1fr}
+    .experience,.intro,.how-it-works{padding:60px 22px}
+    .closing{padding:70px 20px}
+    .query-section{margin:35px 18px}
 }
-
-footer p {
-    margin: 8px;
-}
-
-footer a {
-    color: var(--gold-light);
-    text-decoration: none;
-}
-
-/* MOBILE */
-
-@media(max-width: 700px) {
-    nav {
-        flex-direction: column;
-        gap: 12px;
-        padding: 22px 15px;
-        padding-right: 65px;
-    }
-
-    .logo {
-        font-size: 23px;
-    }
-
-    nav div:last-child {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    nav a {
-        margin: 0;
-        font-size: 12px;
-    }
-
-    .signature {
-        right: 12px;
-        top: 10px;
-        font-size: 23px;
-    }
-
-    .hero {
-        min-height: 540px;
-        padding: 70px 22px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .cards,
-    .steps {
-        grid-template-columns: 1fr;
-    }
-
-    .experience,
-    .intro,
-    .how-it-works {
-        padding: 60px 22px;
-    }
-
-    .closing {
-        padding: 70px 20px;
-    }
-
-    .query-section {
-        margin: 35px 18px;
-    }
+@media(max-width:380px){
+    .topic-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -484,11 +391,16 @@ footer a {
 <body>
 
 <nav>
-    <div class="logo">Chatly<span>friend</span></div>
+    <div class="brand">
+        <div class="brand-logo" aria-label="Chatlyfriend logo space">
+            YOUR LOGO
+        </div>
+        <div class="logo">Chatly<span>friend</span></div>
+    </div>
 
     <div>
         <a href="#about">Our Story</a>
-        <a href="#experience">What We Offer</a>
+        <a href="#experience">Topics</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#privacy">Privacy</a>
     </div>
@@ -498,110 +410,80 @@ footer a {
 
 <header class="hero">
     <div class="hero-content">
-
         <div class="eyebrow">A little space for you</div>
-
         <h1>
             Some things are easier to say
             <span>when someone listens.</span>
         </h1>
-
         <p>
             Welcome to Chatlyfriend. A place for real conversations,
             genuine attention and the freedom to express what
             you don't always find the words to say.
         </p>
-
         <a href="listeners.html" class="button">Choose a Listener</a>
-
         <span class="small-note">
             No judgment. No pressure. Just human connection.
         </span>
-
     </div>
 </header>
 
 <section class="intro" id="about">
-
     <h2>You don't have to keep it all inside.</h2>
-
     <p>
         Life isn't always easy to explain. Sometimes you're happy.
         Sometimes you're confused. Sometimes you carry things
         that you cannot comfortably share with the people around you.
     </p>
-
     <p>
         Maybe it's a relationship, marriage, family, work,
         addiction, disappointment, personal struggles or
         something you have never told anyone.
     </p>
-
     <p>
         Chatlyfriend exists because being heard matters.
         You deserve a conversation where your feelings
         are welcomed and your experiences are treated with respect.
     </p>
-
 </section>
 
 <section class="quote">
-    <p>
-        "A problem shared is a problem half solved."
-    </p>
+    <p>"A problem shared is a problem half solved."</p>
     <small>THE CHATLYFRIEND THOUGHT</small>
 </section>
 
 <section class="experience" id="experience">
-
-    <h2 class="section-title">More than just chatting.</h2>
-
-    <p>
-        A meaningful conversation can make a difference.
-        Here is what you will find at Chatlyfriend.
+    <div class="heart-symbol">♥</div>
+    <h2 class="section-title" id="topics">You can talk about anything.</h2>
+    <p class="experience-intro">
+        Whatever is on your mind, there is room for your story here.
+        Choose a topic or simply talk about what matters to you.
     </p>
 
-    <div class="cards">
-
-        <div class="card">
-            <div class="symbol">♡</div>
-            <h3>Talk Freely</h3>
-            <p>
-                Express your thoughts, share your experiences
-                and talk about the things that matter to you.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="symbol">✧</div>
-            <h3>Be Truly Heard</h3>
-            <p>
-                Enjoy attentive human conversations without
-                unnecessary judgment or assumptions.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="symbol">∞</div>
-            <h3>Feel Connected</h3>
-            <p>
-                Find room for honest expression, understanding
-                and genuine human connection.
-            </p>
-        </div>
-
+    <div class="topic-grid">
+        <div class="topic"><div class="topic-icon">♡</div><h3>Marriage</h3></div>
+        <div class="topic"><div class="topic-icon">♥</div><h3>Love</h3></div>
+        <div class="topic"><div class="topic-icon">❣</div><h3>Relationships</h3></div>
+        <div class="topic"><div class="topic-icon">✧</div><h3>Career</h3></div>
+        <div class="topic"><div class="topic-icon">✎</div><h3>School</h3></div>
+        <div class="topic"><div class="topic-icon">⌂</div><h3>Family</h3></div>
+        <div class="topic"><div class="topic-icon">♡</div><h3>Friendships</h3></div>
+        <div class="topic"><div class="topic-icon">✿</div><h3>Health</h3></div>
+        <div class="topic"><div class="topic-icon">∞</div><h3>Addiction</h3></div>
+        <div class="topic"><div class="topic-icon">☁</div><h3>Frustrations</h3></div>
+        <div class="topic"><div class="topic-icon">◇</div><h3>Betrayal</h3></div>
+        <div class="topic"><div class="topic-icon">☀</div><h3>Happy moments</h3></div>
+        <div class="topic"><div class="topic-icon">☂</div><h3>Sad moments</h3></div>
+        <div class="topic"><div class="topic-icon">▤</div><h3>Work</h3></div>
+        <div class="topic"><div class="topic-icon">✦</div><h3>Bullying</h3></div>
+        <div class="topic"><div class="topic-icon">🌱</div><h3>Personal Growth &amp; Others</h3></div>
     </div>
-
 </section>
 
 <section class="how-it-works" id="how-it-works">
-
     <h2 class="section-title">A conversation starts here.</h2>
-
     <p>Getting started is simple.</p>
 
     <div class="steps">
-
         <div class="step">
             <div class="step-number">1</div>
             <h3>Choose a Listener</h3>
@@ -610,7 +492,6 @@ footer a {
                 someone you'd feel comfortable talking to.
             </p>
         </div>
-
         <div class="step">
             <div class="step-number">2</div>
             <h3>Make Your Payment</h3>
@@ -619,7 +500,6 @@ footer a {
                 the payment to get started.
             </p>
         </div>
-
         <div class="step">
             <div class="step-number">3</div>
             <h3>Start Talking</h3>
@@ -628,107 +508,118 @@ footer a {
                 the space to express what's on your mind.
             </p>
         </div>
-
     </div>
-
-    <a href="listeners.html" class="button">Find Your Listener</a>
-
 </section>
 
 <section class="privacy" id="privacy">
-
     <div class="privacy-content">
-
         <h2 class="section-title">Your story deserves respect.</h2>
-
         <p>
             We understand that some things are difficult to share
             because of fear of judgment, misunderstanding or gossip.
         </p>
-
         <p>
             At Chatlyfriend, we value your privacy and believe
             your conversations should be handled with care,
             discretion and respect.
         </p>
-
         <p>
             You deserve room to express yourself without
             feeling pressured to explain everything.
         </p>
-
     </div>
-
 </section>
 
 <section class="closing">
-
     <h2>Whenever you're ready, we're here.</h2>
-
     <p>
         You don't need to have everything figured out.
         You can simply start with a conversation.
     </p>
-
-    <a href="listeners.html" class="button">
-        Start Your Conversation
-    </a>
-
+    <a href="#contact" class="button">Ask a Question</a>
 </section>
 
 <section class="query-section" id="contact">
-
     <h2>Have a question?</h2>
-
     <p>
         Send us a quick enquiry. We'd be happy to hear from you.
     </p>
 
     <form id="queryForm">
-
         <textarea
             id="queryMessage"
             placeholder="Type your question here..."
-            rows="3"
+            rows="4"
+            maxlength="3000"
             required></textarea>
-
-        <button type="submit">Send Enquiry</button>
-
+        <button type="submit" id="queryButton">Send Enquiry</button>
+        <p id="queryStatus" role="status" aria-live="polite"></p>
     </form>
-
 </section>
 
 <footer>
-
     <p><strong>Chatlyfriend</strong></p>
-
     <p>You deserve to be heard.</p>
-
     <p>A private human connection and listening platform.</p>
-
-    <p>
-        <a href="mailto:chatlyfriend@gmail.com">
-            chatlyfriend@gmail.com
-        </a>
-    </p>
-
+    <p class="email">chatlyfriend@gmail.com</p>
     <p>© 2026 Chatlyfriend. All rights reserved.</p>
-
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-document.getElementById("queryForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+const SUPABASE_URL = "https://qjkfpgrtbpyngectvpyx.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_W7Ibe5HSUugPbl1SpyoMFw_rzoag2l8";
 
-    const message = document.getElementById("queryMessage").value.trim();
+const chatlySupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
-    if (!message) return;
+const queryForm = document.getElementById("queryForm");
+const queryMessage = document.getElementById("queryMessage");
+const queryButton = document.getElementById("queryButton");
+const queryStatus = document.getElementById("queryStatus");
 
-    const subject = encodeURIComponent("Chatlyfriend Website Enquiry");
-    const body = encodeURIComponent(message);
+queryForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-    window.location.href =
-        "mailto:chatlyfriend@gmail.com?subject=" + subject + "&body=" + body;
+    const message = queryMessage.value.trim();
+
+    if (!message) {
+        queryStatus.textContent = "Please enter your question.";
+        return;
+    }
+
+    if (message.length > 3000) {
+        queryStatus.textContent = "Your message is too long.";
+        return;
+    }
+
+    queryButton.disabled = true;
+    queryButton.textContent = "Sending...";
+    queryStatus.textContent = "";
+
+    try {
+        const { error } = await chatlySupabase
+            .from("enquiries")
+            .insert([{ message: message }]);
+
+        if (error) throw error;
+
+        queryStatus.textContent =
+            "Thank you! Your enquiry has been received.";
+        queryStatus.style.color = "#173B75";
+        queryMessage.value = "";
+
+    } catch (error) {
+        console.error("Enquiry submission error:", error);
+        queryStatus.textContent =
+            "We couldn't send your enquiry. Please try again shortly.";
+        queryStatus.style.color = "#9B2929";
+    } finally {
+        queryButton.disabled = false;
+        queryButton.textContent = "Send Enquiry";
+    }
 });
 </script>
 
