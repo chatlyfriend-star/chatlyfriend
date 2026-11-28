@@ -6,16 +6,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Chatlyfriend | You Deserve to Be Heard</title>
-
 <meta name="description" content="Chatlyfriend is a place to talk, share your feelings and find genuine human connection. Be heard without judgment.">
 
 <style>
 :root {
-    --plum: #39243f;
-    --purple: #684b70;
-    --gold: #c49a6c;
-    --cream: #fcf8f3;
-    --soft: #f0e8ef;
+    --royal: #173B75;
+    --deep: #102B55;
+    --blue: #28558E;
+    --pale: #DCEBFA;
+    --light: #C7DDF3;
+    --gold: #D5AD55;
+    --gold-light: #E9CD8D;
+    --text: #183453;
+    --muted: #536D89;
 }
 
 * {
@@ -30,8 +33,8 @@ html {
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--cream);
-    color: #342b35;
+    background: var(--pale);
+    color: var(--text);
     line-height: 1.7;
 }
 
@@ -41,46 +44,46 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 22px 8%;
-    padding-right: 100px;
-    background: #fff;
+    padding-right: 110px;
+    background: var(--pale);
 }
 
 .logo {
     font-size: 25px;
     font-weight: 750;
-    color: var(--plum);
+    color: var(--royal);
     letter-spacing: -1px;
 }
 
 .logo span {
-    color: var(--gold);
+    color: #A77D2C;
 }
 
 nav a {
     text-decoration: none;
-    color: var(--plum);
+    color: var(--royal);
     margin-left: 23px;
     font-size: 14px;
     font-weight: 600;
 }
 
 nav a:hover {
-    color: var(--gold);
+    color: #A77D2C;
 }
 
-/* RWM SIGNATURE WATERMARK */
+/* RWM SIGNATURE */
 
 .signature {
     position: absolute;
     right: 3%;
     top: 8px;
-    color: #684b70;
+    color: var(--royal);
     font-family: "Brush Script MT", "Segoe Script", cursive;
     font-size: 27px;
     font-weight: bold;
     font-style: italic;
     transform: rotate(-13deg);
-    opacity: 0.65;
+    opacity: 0.75;
     z-index: 2;
 }
 
@@ -103,14 +106,14 @@ nav a:hover {
     padding: 15px 32px;
     border-radius: 40px;
     background: var(--gold);
-    color: #302037;
+    color: var(--deep);
     text-decoration: none;
     font-weight: bold;
     transition: 0.3s;
 }
 
 .button:hover {
-    background: white;
+    background: var(--gold-light);
     transform: translateY(-3px);
 }
 
@@ -124,9 +127,9 @@ nav a:hover {
     text-align: center;
     padding: 90px 20px;
     background:
-      radial-gradient(circle at 20% 20%, #73577b 0%, transparent 35%),
-      linear-gradient(135deg, #39243f, #563c5d);
-    color: white;
+      radial-gradient(circle at 20% 20%, #38669F 0%, transparent 38%),
+      linear-gradient(135deg, var(--deep), var(--royal));
+    color: var(--pale);
 }
 
 .hero-content {
@@ -134,7 +137,7 @@ nav a:hover {
 }
 
 .eyebrow {
-    color: #e2c39e;
+    color: var(--gold-light);
     text-transform: uppercase;
     letter-spacing: 4px;
     font-size: 12px;
@@ -151,20 +154,20 @@ nav a:hover {
 }
 
 .hero h1 span {
-    color: #dfbb91;
+    color: var(--gold-light);
     font-style: italic;
 }
 
 .hero p {
     max-width: 600px;
     margin: 0 auto 30px;
-    color: #eee5ef;
+    color: #DCEBFA;
     font-size: 18px;
 }
 
 .small-note {
     display: block;
-    color: #d9c9dc;
+    color: #C7DDF3;
     font-size: 13px;
     margin-top: 18px;
 }
@@ -182,7 +185,7 @@ nav a:hover {
 .section-title {
     font-family: Georgia, serif;
     font-size: clamp(30px, 4vw, 43px);
-    color: var(--plum);
+    color: var(--royal);
     font-weight: normal;
     margin-bottom: 22px;
 }
@@ -195,14 +198,14 @@ nav a:hover {
 /* QUOTE */
 
 .quote {
-    background: var(--soft);
+    background: var(--light);
     padding: 65px 20px;
     text-align: center;
 }
 
 .quote p {
     font-family: Georgia, serif;
-    color: var(--plum);
+    color: var(--royal);
     font-size: clamp(24px, 4vw, 36px);
     font-style: italic;
     max-width: 750px;
@@ -211,7 +214,7 @@ nav a:hover {
 
 .quote small {
     display: block;
-    color: #8a6c8e;
+    color: var(--blue);
     margin-top: 20px;
     letter-spacing: 2px;
 }
@@ -221,6 +224,7 @@ nav a:hover {
 .experience {
     padding: 85px 8%;
     text-align: center;
+    background: var(--pale);
 }
 
 .cards {
@@ -232,20 +236,21 @@ nav a:hover {
 }
 
 .card {
-    background: white;
+    background: #C7DDF3;
     padding: 35px 25px;
     border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(57,36,63,0.06);
+    border: 1px solid #B4CDE8;
+    box-shadow: 0 8px 30px rgba(23,59,117,0.08);
 }
 
 .card .symbol {
     font-size: 32px;
-    color: var(--gold);
+    color: #A77D2C;
     margin-bottom: 15px;
 }
 
 .card h3 {
-    color: var(--plum);
+    color: var(--royal);
     margin-bottom: 12px;
     font-family: Georgia, serif;
     font-size: 23px;
@@ -253,13 +258,13 @@ nav a:hover {
 
 .card p {
     font-size: 15px;
-    color: #665d67;
+    color: var(--muted);
 }
 
 /* HOW IT WORKS */
 
 .how-it-works {
-    background: #fff;
+    background: #C7DDF3;
     padding: 80px 8%;
     text-align: center;
 }
@@ -281,8 +286,8 @@ nav a:hover {
     height: 48px;
     margin: 0 auto 18px;
     border-radius: 50%;
-    background: var(--soft);
-    color: var(--plum);
+    background: var(--royal);
+    color: var(--gold-light);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -291,7 +296,7 @@ nav a:hover {
 }
 
 .step h3 {
-    color: var(--plum);
+    color: var(--royal);
     margin-bottom: 10px;
     font-family: Georgia, serif;
     font-size: 22px;
@@ -300,7 +305,7 @@ nav a:hover {
 /* PRIVACY */
 
 .privacy {
-    background: #eee5ef;
+    background: var(--pale);
     padding: 80px 20px;
     text-align: center;
 }
@@ -320,8 +325,8 @@ nav a:hover {
 .closing {
     padding: 90px 20px;
     text-align: center;
-    background: var(--plum);
-    color: white;
+    background: var(--royal);
+    color: var(--pale);
 }
 
 .closing h2 {
@@ -333,40 +338,41 @@ nav a:hover {
 
 .closing p {
     margin-bottom: 25px;
-    color: #e8dce9;
+    color: #DCEBFA;
 }
 
-/* SMALL QUERY SECTION */
+/* ENQUIRIES */
 
 .query-section {
     max-width: 650px;
     margin: 45px auto;
     padding: 30px 22px;
-    background: linear-gradient(135deg, #fff8f5, #fce8ed);
-    border: 1px solid #f2d5dc;
+    background: var(--light);
+    border: 1px solid #B4CDE8;
     border-radius: 20px;
     text-align: center;
 }
 
 .query-section h2 {
     font-family: Georgia, serif;
-    color: var(--plum);
+    color: var(--royal);
     font-size: 25px;
     margin-bottom: 8px;
 }
 
 .query-section p {
     font-size: 14px;
-    color: #705b64;
+    color: var(--muted);
     margin-bottom: 18px;
 }
 
 .query-section textarea {
     width: 100%;
     padding: 14px;
-    border: 1px solid #e5ccd5;
+    border: 1px solid #9DB9D9;
     border-radius: 12px;
-    background: white;
+    background: var(--pale);
+    color: var(--text);
     font-family: inherit;
     font-size: 15px;
     resize: vertical;
@@ -374,8 +380,8 @@ nav a:hover {
 }
 
 .query-section button {
-    background: linear-gradient(135deg, #9d526e, #713b59);
-    color: white;
+    background: var(--royal);
+    color: var(--pale);
     border: none;
     border-radius: 40px;
     padding: 12px 28px;
@@ -385,21 +391,21 @@ nav a:hover {
 }
 
 .query-section button:hover {
-    opacity: 0.9;
+    background: var(--deep);
 }
 
 /* FOOTER */
 
 footer {
-    background: #28192d;
+    background: var(--deep);
     padding: 35px 20px;
     text-align: center;
-    color: #d8cbd9;
+    color: #C7DDF3;
     font-size: 13px;
 }
 
 footer strong {
-    color: white;
+    color: var(--gold-light);
     font-size: 21px;
 }
 
@@ -408,9 +414,11 @@ footer p {
 }
 
 footer a {
-    color: #dfbb91;
+    color: var(--gold-light);
     text-decoration: none;
 }
+
+/* MOBILE */
 
 @media(max-width: 700px) {
     nav {
@@ -465,6 +473,10 @@ footer a {
     .closing {
         padding: 70px 20px;
     }
+
+    .query-section {
+        margin: 35px 18px;
+    }
 }
 </style>
 </head>
@@ -481,7 +493,7 @@ footer a {
         <a href="#privacy">Privacy</a>
     </div>
 
-    <div class="signature" aria-label="Rwm signature">Rwm</div>
+    <div class="signature" aria-label="RWM signature">Rwm</div>
 </nav>
 
 <header class="hero">
@@ -664,8 +676,6 @@ footer a {
 
 </section>
 
-<!-- SMALL QUERY BOX AT THE BOTTOM -->
-
 <section class="query-section" id="contact">
 
     <h2>Have a question?</h2>
@@ -725,9 +735,3 @@ document.getElementById("queryForm").addEventListener("submit", function(e) {
 </body>
 </html>
 
-    
-
-
-
-
-        
